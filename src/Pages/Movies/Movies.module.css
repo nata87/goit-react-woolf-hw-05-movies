@@ -1,0 +1,9 @@
+.section {
+  font-size: 24px;
+}
+
+.input,
+.button {
+  height: 30px;
+  box-sizing: border-box;
+}

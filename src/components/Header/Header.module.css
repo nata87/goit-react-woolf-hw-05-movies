@@ -1,0 +1,13 @@
+.header {
+  background-color: aliceblue;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 32px;
+  font-weight: 700;
+  box-shadow: 10px 0 10px;
+}
+
+.link {
+  text-decoration: none;
+  margin-right: 20px;
+}
