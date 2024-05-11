@@ -7,7 +7,7 @@ const Header = ({ options }) => {
       {options.map(name => {
         return (
           <Link
-            to={`/${name === 'Home' ? '' : name}`}
+            to={`/${name === 'Home' ? '' : name.toLowerCase()}`}
             className={styles.link}
             key={name}
           >

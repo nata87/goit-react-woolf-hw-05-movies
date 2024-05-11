@@ -1,29 +1,35 @@
 import { searchMovie } from 'api';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Movies.module.css';
 import MovieList from 'components/MovieList/MovieList';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [search, setSearch] = useState('');
   const [result, setResult] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get('query') || '');
+  const search = searchParams.get('query') || '';
 
   useEffect(() => {
-    searchMovie(search).then(res => {
-      setResult(res);
-    });
+    search &&
+      searchMovie(search).then(res => {
+        setResult(res);
+      });
   }, [search]);
 
-  const inputRef = useRef(null);
+  const handleChange = e => {
+    setQuery(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    query.length > 0 && setSearchParams({ query: query });
+  };
+
   return (
     <section className={styles.section}>
-      <form
-        onSubmit={e => {
-          e.preventDefault();
-          setSearch(inputRef.current.value);
-          inputRef.current.value = '';
-        }}
-      >
-        <input className={styles.input} ref={inputRef} />
+      <form onSubmit={handleSubmit}>
+        <input className={styles.input} onChange={handleChange} />
         <button className={styles.button} type="submit">
           Search
         </button>
