@@ -1,12 +1,12 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const BackButton = () => {
-  const { state } = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from ?? location.state?.from.pathname ?? '/';
   return (
-    <button style={{ marginBottom: '30px' }}>
-      <Link style={{ textDecoration: 'none' }} to={state.from}>
-        {'<-- Go back'}
-      </Link>
+    <button style={{ marginBottom: '30px' }} onClick={() => navigate(from)}>
+      {'<-- Go back'}
     </button>
   );
 };

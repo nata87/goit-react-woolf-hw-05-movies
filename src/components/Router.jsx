@@ -1,8 +1,7 @@
 import { Suspense, lazy } from 'react';
-// import MovieDetails from 'Pages/Movie/MovieDetails';
-
 import { Route, Routes, Outlet } from 'react-router-dom';
 import Spiner from './Spiner/Spiner';
+
 const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Movies = lazy(() => import('../Pages/Movies/Movies'));
